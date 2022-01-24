@@ -40,6 +40,7 @@ Transaction tx = session.beginTransaction();
         gunluk1.getKisi();
         
         tx.commit();
-	}
+	
 
+}
 }
