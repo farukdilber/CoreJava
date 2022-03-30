@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List Cities</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+<button type="button" th:onclick="inputName()">Il ve Ilce Giriniz</button>
+<h2>Il ve Ilce Mudurlugu</h2>
+<p>
+    Il ve Ilce ekleme basarili <strong>very special</strong> styling.
+</p>
+<div class="container">
+
+    <h3>Il ve Ilceleri Listele</h3>
+
+    <hr/>
+    <a th:href="@{/addCityForm}" class="btn btn-primary">Il ve ilce ekle</a>
+    <!--3) buton tıklandığında controller daki /addEmployeeForm path i olan metod tetiklenecek,
+    orada oluşturulan obje sayesinde burada veriler girilebilecek ve işe yarayacak -->
+    <br/><br/>
+    <table class="table table-bordered table-striped" id="citiesTable">
+
+        <thead>
+        <tr>
+            <th>Il</th>
+            <th>Ilce</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="city: ${sehirler}">
+            <!--2) controller dan calisanlar ismiyle gelen verileri burada employee ismiyle kullan-->
+            <td th:text="${city.il}" />
+            <td th:text="${city.ilce}" />
+
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<script type="text/javascript" th:src="@{/js/action.js}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#citiesTable").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,/*kendi sıralaması devre dışı*/
+                'aTargets': [-1] /*ilk sütunu sırala,2. için 1 , 3. için 2 */
+            }]
+        });
+    })
+</script>
+</body>
+
+</html>

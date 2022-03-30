@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Il ve Ilce Ekle</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Yeni Il ve Ilce ekle</h3>
+    <hr/>
+
+    <form th:action="@{/saveCity}" th:object="${city}" method="POST"><!-- 5)controller dan gelen city objesiyle veriler burada girilebilir hale geldi -->
+        <!--  sonrasında submit(gönder) butonuna basınca buradaki form,@{/saveCity} metodunu tetikledi 6 ya gidiyoruz -->
+        <input type="text" th:field="*{il}" class="form-control col-4 mb-4" placeholder="Il Giriniz" />
+
+        <input type="text" th:field="*{ilce}" class="form-control col-4 mb-4" placeholder="Ilce Giriniz" />
+
+        <button type="submit" class="btn btn-primary col-2">Kaydet</button>
+        <input type="hidden" th:field="*{id}" />
+
+    </form>
+    <hr/>
+    <a th:href="@{/list}">Liste geri don</a>
+</div>
+
+</body>
+</html>
